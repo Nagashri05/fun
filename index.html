@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Don't Click This 😈</title>
+
+    <!-- ✅ IMPORTANT FOR MOBILE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* prevents scroll on mobile */
+        }
+
+        h1 {
+            font-size: 28px; /* smaller for mobile */
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            position: fixed;
+        }
+
+        #text {
+            margin-top: 20px;
+            font-size: 22px;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>⚠️ Don't Click The Button ⚠️</h1>
+<button id="btn">Click Me 😏</button>
+<h2 id="text"></h2>
+
+<script>
+let clickCount = 0;
+let gameOver = false;
+
+const btn = document.getElementById("btn");
+
+// ✅ Works for BOTH mobile (touch) + laptop (mouse)
+btn.addEventListener("click", fun);
+btn.addEventListener("touchstart", fun);
+
+function fun() {
+
+    if (gameOver) return;
+
+    clickCount++;
+
+    let messages = [
+        "Catch me if you can 😏",
+        "Too slow bro 😂",
+        "You can't click me 😭",
+        "Why are you still trying 💀",
+        "Give up already 😈",
+        "Mission failed 💀",
+        "404: Click not found 😂",
+        "Bro thinks he can win 😭",
+        "Nice try... try again 😏",
+        "You vs Button = Button wins 😂"
+    ];
+
+    document.getElementById("text").innerText =
+        messages[Math.floor(Math.random() * messages.length)];
+
+    // ✅ Safe movement for mobile
+    let maxX = window.innerWidth - btn.offsetWidth;
+    let maxY = window.innerHeight - btn.offsetHeight;
+
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = Math.random() * maxY + "px";
+
+    // 🎯 FINAL STAGE
+    if (clickCount >= 10) {
+        gameOver = true;
+
+        setTimeout(() => {
+
+            // 🔴 HACK SCREEN
+            document.body.innerHTML = `
+                <style>
+                    body {
+                        margin: 0;
+                        height: 100vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: black;
+                        font-family: Arial;
+                        color: red;
+                        text-align: center;
+                    }
+
+                    h1 {
+                        font-size: 35px;
+                        animation: glitch 0.2s infinite;
+                    }
+
+                    @keyframes glitch {
+                        0% { transform: translate(0); }
+                        25% { transform: translate(2px, -2px); }
+                        50% { transform: translate(-2px, 2px); }
+                        75% { transform: translate(2px, 2px); }
+                        100% { transform: translate(0); }
+                    }
+                </style>
+
+                <h1>⚠️ YOUR MOBILE IS HACKED ⚠️</h1>
+            `;
+
+            // 📳 vibration (mobile only)
+            if (navigator.vibrate) navigator.vibrate([200,100,200]);
+
+            setTimeout(() => {
+
+                // 🟣 FINAL SCREEN
+                document.body.innerHTML = `
+                    <style>
+                        body {
+                            margin: 0;
+                            height: 100vh;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: radial-gradient(circle, #0a0a0a, #111827, #020617);
+                            font-family: Arial;
+                            color: white;
+                        }
+
+                        .container {
+                            text-align: center;
+                        }
+
+                        h1 {
+                            font-size: 32px;
+                            color: #8b5cf6;
+                            text-shadow:
+                                0 0 10px #8b5cf6,
+                                0 0 25px #6366f1,
+                                0 0 40px #4f46e5;
+                        }
+
+                        p {
+                            margin-top: 15px;
+                            font-size: 16px;
+                            color: #c7d2fe;
+                        }
+                    </style>
+
+                    <div class="container">
+                        <h1>🚀 Welcome to BugLife404Zone 🚀</h1>
+                        <p>Where bugs become entertainment 😈</p>
+                    </div>
+                `;
+            }, 3000);
+
+        }, 500);
+    }
+}
+</script>
+
+</body>
+</html>
