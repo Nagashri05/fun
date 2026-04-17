@@ -1,177 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Don't Click This 😈</title>
+  <title>Mind Reader</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #fff;
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+    }
 
-    <!-- ✅ IMPORTANT FOR MOBILE -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    #box {
+      max-width: 500px;
+      margin: auto;
+    }
 
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial;
-            background: linear-gradient(135deg, #000000, #1a1a1a);
-            color: white;
-            margin: 0;
-            height: 100vh;
-            overflow: hidden; /* prevents scroll on mobile */
-        }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+    }
 
-        h1 {
-            font-size: 28px; /* smaller for mobile */
-            margin-bottom: 20px;
-        }
+    .loader {
+      margin-top: 20px;
+      font-size: 18px;
+      animation: blink 1s infinite;
+    }
 
-        button {
-            padding: 12px 25px;
-            font-size: 18px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            position: fixed;
-        }
+    @keyframes blink {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
 
-        #text {
-            margin-top: 20px;
-            font-size: 22px;
-            color: yellow;
-        }
-    </style>
+    .glitch {
+      font-size: 28px;
+      animation: glitch 0.4s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      25% { text-shadow: -2px 2px blue; }
+      50% { text-shadow: 2px -2px lime; }
+      75% { text-shadow: -2px -2px cyan; }
+      100% { text-shadow: 2px 2px red; }
+    }
+
+    .brand {
+      margin-top: 25px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #00ffcc;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .showBrand {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .small {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>⚠️ Don't Click The Button ⚠️</h1>
-<button id="btn">Click Me 😏</button>
-<h2 id="text"></h2>
+<div id="box">
+  <h1>🔮 Mind Reader</h1>
+  <p id="text">I can read your mind. Think I'm joking?</p>
+  <button onclick="nextStep()">Start</button>
+
+  <div id="brand" class="brand">buglife404zone</div>
+  <div id="follow" class="small"></div>
+</div>
+
+<!-- ✅ AUDIO (ONLY ONCE) -->
+<audio id="clickSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"></audio>
+<audio id="typeSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-typing-on-keyboard-1366.mp3"></audio>
+<audio id="revealSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-retro-jump-223.mp3"></audio>
 
 <script>
-let clickCount = 0;
-let gameOver = false;
+let step = 0;
 
-const btn = document.getElementById("btn");
+const clickSound = document.getElementById("clickSound");
+const typeSound = document.getElementById("typeSound");
+const revealSound = document.getElementById("revealSound");
 
-// ✅ Works for BOTH mobile (touch) + laptop (mouse)
-btn.addEventListener("click", fun);
-btn.addEventListener("touchstart", fun);
+// 🔓 unlock audio on first click
+window.addEventListener("click", () => {
+  clickSound.play().catch(() => {});
+  typeSound.play().catch(() => {});
+  revealSound.play().catch(() => {});
+}, { once: true });
 
-function fun() {
+function play(sound) {
+  if (!sound) return;
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
 
-    if (gameOver) return;
+function nextStep() {
+  const text = document.getElementById("text");
 
-    clickCount++;
+  play(clickSound);
+  step++;
 
-    let messages = [
-        "Catch me if you can 😏",
-        "Too slow bro 😂",
-        "You can't click me 😭",
-        "Why are you still trying 💀",
-        "Give up already 😈",
-        "Mission failed 💀",
-        "404: Click not found 😂",
-        "Bro thinks he can win 😭",
-        "Nice try... try again 😏",
-        "You vs Button = Button wins 😂"
-    ];
+  function updateText(message) {
+    play(typeSound);
+    text.innerText = message;
+  }
 
-    document.getElementById("text").innerText =
-        messages[Math.floor(Math.random() * messages.length)];
+  if (step === 1) updateText("Think of any number between 1 and 100.");
+  else if (step === 2) updateText("Multiply it by 2.");
+  else if (step === 3) updateText("Add 10 to the result.");
+  else if (step === 4) updateText("Now divide it by 2.");
+  else if (step === 5) updateText("Finally, subtract your original number.");
+  else if (step === 6) {
+    text.innerHTML = "<div class='loader'>Analyzing brainwaves...</div>";
+    setTimeout(reveal, 2500);
+  }
+}
 
-    // ✅ Safe movement for mobile
-    let maxX = window.innerWidth - btn.offsetWidth;
-    let maxY = window.innerHeight - btn.offsetHeight;
+function reveal() {
+  const text = document.getElementById("text");
+  const brand = document.getElementById("brand");
+  const follow = document.getElementById("follow");
 
-    btn.style.left = Math.random() * maxX + "px";
-    btn.style.top = Math.random() * maxY + "px";
+  play(revealSound);
 
-    // 🎯 FINAL STAGE
-    if (clickCount >= 10) {
-        gameOver = true;
+  text.innerHTML = "<span class='glitch'>You're thinking of... 5 😏</span>";
 
-        setTimeout(() => {
+  setTimeout(() => {
+    text.innerText = "Wait... that's not important.";
+    play(typeSound);
+  }, 2000);
 
-            // 🔴 HACK SCREEN
-            document.body.innerHTML = `
-                <style>
-                    body {
-                        margin: 0;
-                        height: 100vh;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background: black;
-                        font-family: Arial;
-                        color: red;
-                        text-align: center;
-                    }
+  setTimeout(() => {
+    text.innerText = "I wasn't reading your mind...";
+    play(typeSound);
+  }, 3500);
 
-                    h1 {
-                        font-size: 35px;
-                        animation: glitch 0.2s infinite;
-                    }
+  setTimeout(() => {
+    text.innerText = "I was planting a thought.";
+    play(typeSound);
+  }, 5000);
 
-                    @keyframes glitch {
-                        0% { transform: translate(0); }
-                        25% { transform: translate(2px, -2px); }
-                        50% { transform: translate(-2px, 2px); }
-                        75% { transform: translate(2px, 2px); }
-                        100% { transform: translate(0); }
-                    }
-                </style>
-
-                <h1>⚠️ YOUR MOBILE IS HACKED ⚠️</h1>
-            `;
-
-            // 📳 vibration (mobile only)
-            if (navigator.vibrate) navigator.vibrate([200,100,200]);
-
-            setTimeout(() => {
-
-                // 🟣 FINAL SCREEN
-                document.body.innerHTML = `
-                    <style>
-                        body {
-                            margin: 0;
-                            height: 100vh;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            background: radial-gradient(circle, #0a0a0a, #111827, #020617);
-                            font-family: Arial;
-                            color: white;
-                        }
-
-                        .container {
-                            text-align: center;
-                        }
-
-                        h1 {
-                            font-size: 32px;
-                            color: #8b5cf6;
-                            text-shadow:
-                                0 0 10px #8b5cf6,
-                                0 0 25px #6366f1,
-                                0 0 40px #4f46e5;
-                        }
-
-                        p {
-                            margin-top: 15px;
-                            font-size: 16px;
-                            color: #c7d2fe;
-                        }
-                    </style>
-
-                    <div class="container">
-                        <h1>🚀 Welcome to BugLife404Zone 🚀</h1>
-                        <p>Where bugs become entertainment 😈</p>
-                    </div>
-                `;
-            }, 3000);
-
-        }, 500);
-    }
+  setTimeout(() => {
+    play(revealSound);
+    text.innerHTML = "<span class='glitch'>buglife404zone</span>";
+    brand.classList.add("showBrand");
+    follow.innerText = "Follow for more weird web stuff 👀";
+  }, 6500);
 }
 </script>
 
