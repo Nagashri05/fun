@@ -2,18 +2,35 @@
 <html>
 <head>
   <title>Mind Reader</title>
+
+  <!-- ✅ Mobile responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       background: #0d0d0d;
       color: #fff;
       font-family: Arial;
       text-align: center;
-      margin-top: 100px;
+      margin: 0;
+      padding: 40px 15px;
+
+      /* desktop centering */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
     }
 
     #box {
       max-width: 500px;
+      width: 100%;
       margin: auto;
+    }
+
+    h1 {
+      font-size: 28px;
     }
 
     button {
@@ -25,6 +42,7 @@
       color: #000;
       border: none;
       border-radius: 5px;
+      width: auto;
     }
 
     .loader {
@@ -72,6 +90,22 @@
       opacity: 0.6;
       margin-top: 10px;
     }
+
+    /* 📱 Mobile optimization */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      button {
+        width: 100%;
+        font-size: 15px;
+      }
+
+      .glitch {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 
@@ -86,7 +120,7 @@
   <div id="follow" class="small"></div>
 </div>
 
-<!-- ✅ AUDIO (ONLY ONCE) -->
+<!-- 🔊 AUDIO -->
 <audio id="clickSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"></audio>
 <audio id="typeSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-typing-on-keyboard-1366.mp3"></audio>
 <audio id="revealSound" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-retro-jump-223.mp3"></audio>
@@ -98,12 +132,14 @@ const clickSound = document.getElementById("clickSound");
 const typeSound = document.getElementById("typeSound");
 const revealSound = document.getElementById("revealSound");
 
-// 🔓 unlock audio on first click
-window.addEventListener("click", () => {
-  clickSound.play().catch(() => {});
-  typeSound.play().catch(() => {});
-  revealSound.play().catch(() => {});
-}, { once: true });
+// 🔓 unlock audio for both mobile + desktop
+["click", "touchstart"].forEach(event => {
+  window.addEventListener(event, () => {
+    clickSound.play().catch(() => {});
+    typeSound.play().catch(() => {});
+    revealSound.play().catch(() => {});
+  }, { once: true });
+});
 
 function play(sound) {
   if (!sound) return;
@@ -168,7 +204,3 @@ function reveal() {
 
 </body>
 </html>
-
-
-
-
