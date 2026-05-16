@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multiply by 11 Trick &#128293;</title>
+  <title>Trigonometry Made Easy 📐</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #090b12;
-      --panel: rgba(17, 22, 34, 0.86);
-      --panel-strong: rgba(24, 31, 48, 0.94);
-      --text: #f7f8ff;
-      --muted: #9aa4bd;
-      --line: rgba(255, 255, 255, 0.13);
-      --yellow: #ffd166;
-      --pink: #ff5ea8;
-      --cyan: #4ce6d2;
-      --blue: #6aa8ff;
-      --green: #8aff80;
-      --danger: #ff7a7a;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      --bg: #080a12;
+      --panel: #111827;
+      --panel-soft: rgba(255, 255, 255, 0.065);
+      --text: #f8fbff;
+      --muted: #aeb8cc;
+      --line: rgba(255, 255, 255, 0.14);
+      --perp: #ff5c7a;
+      --base: #5ca8ff;
+      --hyp: #62e889;
+      --angle: #ffd166;
+      --purple: #b69cff;
+      --dark: #071016;
+      --shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
     }
 
     * {
@@ -29,290 +29,398 @@
     body {
       min-height: 100vh;
       margin: 0;
+      padding: 12px;
       display: grid;
       place-items: center;
-      padding: 28px 16px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 16% 18%, rgba(255, 94, 168, 0.22), transparent 28%),
-        radial-gradient(circle at 84% 12%, rgba(76, 230, 210, 0.2), transparent 24%),
-        linear-gradient(135deg, #070811 0%, #12182a 54%, #080a12 100%);
+        radial-gradient(circle at 16% 10%, rgba(255, 92, 122, 0.2), transparent 28%),
+        radial-gradient(circle at 88% 14%, rgba(98, 232, 137, 0.16), transparent 24%),
+        linear-gradient(135deg, #070911, #121a2d 55%, #070911);
     }
 
     main {
-      width: min(100%, 720px);
+      width: min(100%, 680px);
     }
 
     .app {
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: linear-gradient(145deg, var(--panel), var(--panel-strong));
+      background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(24, 34, 56, 0.94));
       box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
     }
 
-    .hero {
-      padding: clamp(28px, 7vw, 48px) clamp(20px, 6vw, 44px) 22px;
+    header {
+      padding: 24px 16px 12px;
       text-align: center;
     }
 
+    .tag {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 209, 102, 0.34);
+      border-radius: 999px;
+      color: var(--angle);
+      background: rgba(255, 209, 102, 0.08);
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     h1 {
-      margin: 0;
-      font-size: clamp(2.35rem, 9vw, 5.1rem);
-      line-height: 0.95;
+      margin: 14px 0 0;
+      font-size: clamp(2rem, 9.5vw, 4.2rem);
+      line-height: 0.98;
       letter-spacing: 0;
     }
 
     .subtitle {
-      max-width: 520px;
-      margin: 16px auto 0;
+      max-width: 560px;
+      margin: 12px auto 0;
       color: var(--muted);
-      font-size: clamp(1rem, 2.5vw, 1.18rem);
+      font-size: clamp(0.98rem, 3.6vw, 1.12rem);
+      line-height: 1.48;
+      font-weight: 720;
     }
 
-    .calculator {
-      padding: 0 clamp(16px, 5vw, 36px) clamp(22px, 5vw, 36px);
+    .lesson {
+      padding: 0 14px 18px;
     }
 
-    .input-row {
+    .progress {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 12px;
-      padding: 14px;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
+      background: var(--panel-soft);
     }
 
-    input {
+    .progress strong {
+      display: block;
+      font-size: clamp(1.02rem, 4vw, 1.3rem);
+    }
+
+    .progress span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 760;
+    }
+
+    .count {
+      min-width: 72px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: var(--dark);
+      background: var(--angle);
+      font-weight: 1000;
+      text-align: center;
+    }
+
+    .visual-card {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(5, 8, 16, 0.62);
+    }
+
+    .triangle {
       width: 100%;
-      min-height: 58px;
+      min-height: 235px;
+      display: block;
+    }
+
+    .triangle text {
+      fill: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      font-weight: 950;
+    }
+
+    .triangle .label {
+      fill: var(--muted);
+      font-weight: 900;
+    }
+
+    .side {
+      stroke: rgba(248, 251, 255, 0.72);
+      stroke-width: 5;
+      stroke-linecap: round;
+      fill: none;
+      transition: stroke 260ms ease, filter 260ms ease, stroke-width 260ms ease;
+    }
+
+    .base.active {
+      stroke: var(--base);
+      stroke-width: 8;
+      filter: drop-shadow(0 0 10px var(--base));
+    }
+
+    .perp.active {
+      stroke: var(--perp);
+      stroke-width: 8;
+      filter: drop-shadow(0 0 10px var(--perp));
+    }
+
+    .hyp.active {
+      stroke: var(--hyp);
+      stroke-width: 8;
+      filter: drop-shadow(0 0 10px var(--hyp));
+    }
+
+    .angle-mark {
+      stroke: var(--angle);
+      stroke-width: 5;
+      fill: none;
+      filter: drop-shadow(0 0 8px rgba(255, 209, 102, 0.8));
+    }
+
+    .right-mark {
+      stroke: rgba(248, 251, 255, 0.76);
+      stroke-width: 4;
+      fill: none;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .legend-item {
+      min-height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 0.86rem;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .legend-item.perp-text {
+      color: var(--perp);
+    }
+
+    .legend-item.base-text {
+      color: var(--base);
+    }
+
+    .legend-item.hyp-text {
+      color: var(--hyp);
+    }
+
+    .stage {
+      display: grid;
+      align-items: center;
+      min-height: 260px;
+      margin-top: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.045);
+      overflow: hidden;
+    }
+
+    .step {
+      display: none;
+      width: 100%;
+      min-height: 100%;
+      padding: clamp(16px, 5vw, 24px);
+      opacity: 0;
+      transform: translateY(18px) scale(0.94);
+    }
+
+    .step.show {
+      display: grid;
+      align-content: center;
+      gap: 13px;
+      animation: popIn 520ms cubic-bezier(0.2, 1.2, 0.32, 1) forwards;
+    }
+
+    .step.hide {
+      display: grid;
+      align-content: center;
+      gap: 13px;
+      animation: popOut 330ms ease forwards;
+    }
+
+    .step-chip {
+      width: fit-content;
+      padding: 7px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      color: var(--angle);
+      background: rgba(255, 209, 102, 0.08);
+      font-size: 0.76rem;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .step h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 6.6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .explain {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 3.8vw, 1.16rem);
+      line-height: 1.46;
+      font-weight: 740;
+    }
+
+    .formula {
+      display: grid;
+      place-items: center;
+      min-height: 86px;
+      padding: 14px;
+      border-radius: 8px;
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--angle), var(--purple));
+      font-size: clamp(1.2rem, 6.2vw, 2.55rem);
+      line-height: 1.12;
+      font-weight: 1000;
+      text-align: center;
+      word-break: break-word;
+      box-shadow: inset 0 -14px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .formula.red {
+      background: linear-gradient(135deg, var(--perp), var(--angle));
+    }
+
+    .formula.blue {
+      background: linear-gradient(135deg, var(--base), var(--hyp));
+    }
+
+    .formula.green {
+      background: linear-gradient(135deg, var(--hyp), var(--angle));
+    }
+
+    .quiz {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 9px;
+    }
+
+    .quiz-option {
+      min-height: 48px;
+      padding: 10px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 8px;
-      outline: none;
-      padding: 0 18px;
       color: var(--text);
-      background: rgba(5, 7, 13, 0.72);
-      font: 900 clamp(1.4rem, 6vw, 2.4rem) / 1 Inter, system-ui, sans-serif;
-      text-align: center;
-      letter-spacing: 0;
-      transition: border-color 180ms ease, box-shadow 180ms ease;
+      background: rgba(255, 255, 255, 0.08);
+      text-align: left;
     }
 
-    input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 4px rgba(76, 230, 210, 0.14);
+    .quiz-option.correct {
+      color: var(--dark);
+      background: var(--hyp);
+    }
+
+    .quiz-option.wrong {
+      color: var(--text);
+      background: rgba(255, 92, 122, 0.28);
+    }
+
+    .quiz-result {
+      min-height: 24px;
+      color: var(--hyp);
+      font-weight: 900;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
     }
 
     button {
+      min-height: 52px;
       border: 0;
       border-radius: 8px;
-      color: #071016;
-      background: linear-gradient(135deg, var(--yellow), var(--pink));
-      font-weight: 900;
+      font: inherit;
+      font-weight: 950;
       cursor: pointer;
-      transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
-      box-shadow: 0 12px 28px rgba(255, 94, 168, 0.22);
+      transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease;
     }
 
     button:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
-      box-shadow: 0 18px 34px rgba(255, 94, 168, 0.28);
     }
 
     button:active {
       transform: translateY(0) scale(0.99);
     }
 
-    .calculate {
-      min-height: 58px;
-      padding: 0 22px;
-      font-size: 1.02rem;
-      white-space: nowrap;
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    .examples {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-weight: 700;
+    .primary {
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--angle), var(--perp));
+      box-shadow: 0 14px 30px rgba(255, 92, 122, 0.2);
     }
 
-    .example-chip {
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 999px;
-      padding: 7px 11px;
-      background: rgba(255, 255, 255, 0.06);
+    .secondary {
       color: var(--text);
-      cursor: pointer;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .example-chip:hover {
-      transform: translateY(-2px);
-      border-color: rgba(76, 230, 210, 0.38);
-      background: rgba(76, 230, 210, 0.1);
+    .practice {
+      grid-column: 1 / -1;
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--hyp), var(--base));
     }
 
-    .message {
-      min-height: 24px;
-      margin: 14px 0 0;
-      color: var(--danger);
-      text-align: center;
-      font-weight: 800;
-    }
-
-    .steps {
-      margin-top: 20px;
-      min-height: 188px;
-      display: grid;
-      align-items: center;
-    }
-
-    .step {
-      display: none;
-      gap: 8px;
-      padding: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      opacity: 0;
-      transform: translateY(22px) scale(0.92);
-    }
-
-    .step.show {
-      display: grid;
-      border-color: rgba(76, 230, 210, 0.36);
-      animation: cardPop 520ms cubic-bezier(0.2, 1.2, 0.32, 1) forwards;
-    }
-
-    .step.hide {
-      display: grid;
-      animation: cardExit 380ms ease forwards;
-    }
-
-    .step-label {
-      color: var(--muted);
-      font-size: 0.86rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .math-line {
+    .dots {
       display: flex;
-      align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      min-height: 74px;
-      font-size: clamp(1.45rem, 8vw, 3.3rem);
-      font-weight: 950;
-      line-height: 1;
-      text-align: center;
-    }
-
-    .digit,
-    .symbol {
-      display: inline-grid;
-      place-items: center;
-      min-width: clamp(48px, 16vw, 82px);
-      min-height: clamp(48px, 16vw, 82px);
-      padding: 8px;
-      border-radius: 8px;
-      color: #071016;
-      background: var(--cyan);
-      box-shadow: inset 0 -10px 24px rgba(0, 0, 0, 0.13);
-      animation: pop 520ms cubic-bezier(0.2, 1.35, 0.32, 1) both;
-      animation-delay: var(--delay, 0ms);
-    }
-
-    .digit.first {
-      background: var(--yellow);
-    }
-
-    .digit.middle {
-      background: var(--pink);
-      color: #fff;
-    }
-
-    .digit.last {
-      background: var(--blue);
-      color: #fff;
-    }
-
-    .symbol {
-      min-width: auto;
-      color: var(--text);
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .carry-note {
-      color: var(--green);
-      font-size: clamp(1rem, 3.4vw, 1.25rem);
-      font-weight: 850;
-      text-align: center;
-    }
-
-    .answer {
-      display: none;
-      padding: 20px;
-      border: 1px solid rgba(138, 255, 128, 0.36);
-      border-radius: 8px;
-      background: rgba(138, 255, 128, 0.075);
-      text-align: center;
-    }
-
-    .answer.show {
-      display: block;
-      animation: answerPop 560ms cubic-bezier(0.2, 1.2, 0.32, 1) both;
-    }
-
-    .answer-label {
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .final-number {
-      margin-top: 4px;
-      font-size: clamp(3.8rem, 18vw, 7.8rem);
-      line-height: 0.95;
-      font-weight: 1000;
-      color: var(--green);
-      text-shadow: 0 0 28px rgba(138, 255, 128, 0.25);
-    }
-
-    .try-again {
-      display: none;
-      width: 100%;
-      min-height: 54px;
+      gap: 6px;
       margin-top: 14px;
-      font-size: 1rem;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: none;
     }
 
-    .try-again.show {
-      display: block;
-      animation: buttonPop 420ms ease both;
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.24);
+      transition: width 180ms ease, background 180ms ease;
     }
 
-    @keyframes cardPop {
+    .dot.active {
+      width: 24px;
+      background: var(--angle);
+    }
+
+    @keyframes popIn {
       0% {
         opacity: 0;
-        transform: translateY(22px) scale(0.92);
+        transform: translateY(18px) scale(0.94);
       }
       70% {
         opacity: 1;
@@ -324,303 +432,377 @@
       }
     }
 
-    @keyframes pop {
-      0% {
-        opacity: 0;
-        transform: translateY(16px) scale(0.65) rotate(-2deg);
-      }
-      75% {
-        opacity: 1;
-        transform: translateY(-5px) scale(1.08) rotate(1deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotate(0);
-      }
-    }
-
-    @keyframes cardExit {
+    @keyframes popOut {
       0% {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
       100% {
         opacity: 0;
-        transform: translateY(-18px) scale(0.94);
+        transform: translateY(-16px) scale(0.95);
       }
     }
 
-    @keyframes answerPop {
-      0% {
-        opacity: 0;
-        transform: translateY(22px) scale(0.9);
-      }
-      70% {
-        opacity: 1;
-        transform: translateY(-4px) scale(1.02);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes buttonPop {
-      0% {
-        opacity: 0;
-        transform: translateY(12px) scale(0.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @media (max-width: 560px) {
+    @media (max-width: 520px) {
       body {
-        padding: 14px;
+        padding: 8px;
       }
 
-      .hero {
-        padding-top: 30px;
+      header {
+        padding-top: 22px;
       }
 
-      .input-row {
+      .triangle {
+        min-height: 215px;
+      }
+
+      .legend {
         grid-template-columns: 1fr;
       }
 
-      .calculate {
-        width: 100%;
+      .stage {
+        min-height: 285px;
       }
 
-      .step {
-        padding: 14px;
+      .progress {
+        grid-template-columns: 1fr;
+      }
+
+      .count {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <main>
-    <section class="app" aria-label="Multiply by 11 trick calculator">
-      <div class="hero">
-        <h1>Multiply by 11 Trick &#128293;</h1>
-        <p class="subtitle">Enter any 2-digit number and watch the quick mental math trick unfold step by step.</p>
-      </div>
+    <section class="app" aria-label="Interactive trigonometry ratio lesson">
+      <header>
+        <span class="tag">Right Triangle OAB</span>
+        <h1>Trigonometry Made Easy 📐</h1>
+        <p class="subtitle">Learn only this formula set: sin, cos, tan, cosec, sec, and cot for a right-angled triangle where angle BOA = &theta;.</p>
+      </header>
 
-      <div class="calculator">
-        <form class="input-row" id="trickForm">
-          <input
-            id="numberInput"
-            type="number"
-            min="10"
-            max="99"
-            inputmode="numeric"
-            placeholder="23"
-            aria-label="Enter a 2-digit number"
-            autocomplete="off"
-          >
-          <button class="calculate" type="submit">Calculate</button>
-        </form>
-
-        <div class="examples" aria-label="Examples">
-          <span>Try</span>
-          <span class="example-chip">23</span>
-          <span class="example-chip">54</span>
-          <span class="example-chip">99</span>
+      <section class="lesson">
+        <div class="progress">
+          <div>
+            <strong id="stepTitle">Triangle first</strong>
+            <span id="stepHint">Follow each side highlight before learning the formula.</span>
+          </div>
+          <div class="count" id="count">1 / 16</div>
         </div>
 
-        <p class="message" id="message" role="status"></p>
+        <div class="visual-card">
+          <svg class="triangle" viewBox="0 0 430 255" role="img" aria-label="Right angled triangle OAB with angle theta at O">
+            <path id="hypSide" class="side hyp" d="M72 205 L330 44"></path>
+            <path id="baseSide" class="side base" d="M72 205 L330 205"></path>
+            <path id="perpSide" class="side perp" d="M330 205 L330 44"></path>
+            <path class="right-mark" d="M305 205 L305 180 L330 180"></path>
+            <path class="angle-mark" d="M108 205 A36 36 0 0 1 124 176"></path>
+            <text x="58" y="229">O</text>
+            <text x="330" y="229">A</text>
+            <text x="336" y="42">B</text>
+            <text class="label" x="164" y="232">Base (OA)</text>
+            <text class="label" x="349" y="150" transform="rotate(-90 349 150)">Perpendicular (AB)</text>
+            <text class="label" x="126" y="105">Hypotenuse (OB)</text>
+            <text x="126" y="195">&theta;</text>
+          </svg>
 
-        <div class="steps" id="stage" aria-live="polite">
-          <div class="step" id="step1">
-            <span class="step-label">Step 1: Split digits</span>
-            <div class="math-line" id="splitLine"></div>
-          </div>
-          <div class="step" id="step2">
-            <span class="step-label">Step 2: Add digits</span>
-            <div class="math-line" id="addLine"></div>
-            <div class="carry-note" id="carryNote"></div>
-          </div>
-          <div class="step" id="step3">
-            <span class="step-label">Step 3: Form result</span>
-            <div class="math-line" id="resultLine"></div>
-          </div>
-
-          <div class="answer" id="answerBox">
-            <div class="answer-label">Final Answer</div>
-            <div class="final-number" id="finalAnswer">253</div>
+          <div class="legend">
+            <div class="legend-item perp-text">Red = Perpendicular</div>
+            <div class="legend-item base-text">Blue = Base</div>
+            <div class="legend-item hyp-text">Green = Hypotenuse</div>
           </div>
         </div>
 
-        <button class="try-again" id="tryAgain" type="button">Try another number</button>
-      </div>
+        <div class="stage" id="stage" aria-live="polite"></div>
+
+        <div class="controls">
+          <button class="secondary" id="prevBtn" type="button">Previous Step ⬅️</button>
+          <button class="primary" id="nextBtn" type="button">Next Step ▶️</button>
+          <button class="secondary" id="autoBtn" type="button">Auto Play 🎬</button>
+          <button class="practice" id="practiceBtn" type="button">Practice Height &amp; Distance</button>
+        </div>
+
+        <div class="dots" id="dots" aria-hidden="true"></div>
+      </section>
     </section>
   </main>
 
   <script>
-    const form = document.getElementById("trickForm");
-    const input = document.getElementById("numberInput");
-    const message = document.getElementById("message");
-    const steps = [...document.querySelectorAll(".step")];
-    const splitLine = document.getElementById("splitLine");
-    const addLine = document.getElementById("addLine");
-    const carryNote = document.getElementById("carryNote");
-    const resultLine = document.getElementById("resultLine");
-    const answerBox = document.getElementById("answerBox");
-    const finalAnswer = document.getElementById("finalAnswer");
-    const tryAgain = document.getElementById("tryAgain");
-    const exampleChips = document.querySelectorAll(".example-chip");
-
-    let timers = [];
-
-    function clearTimers() {
-      timers.forEach((timer) => clearTimeout(timer));
-      timers = [];
-    }
-
-    function resetDisplay() {
-      clearTimers();
-      message.textContent = "";
-      steps.forEach((step) => step.classList.remove("show", "hide"));
-      splitLine.innerHTML = "";
-      addLine.innerHTML = "";
-      carryNote.textContent = "";
-      resultLine.innerHTML = "";
-      answerBox.classList.remove("show");
-      tryAgain.classList.remove("show");
-    }
-
-    function token(value, className = "", delay = 0) {
-      return `<span class="${className}" style="--delay: ${delay}ms">${value}</span>`;
-    }
-
-    function digit(value, className = "", delay = 0) {
-      return token(value, `digit ${className}`, delay);
-    }
-
-    function symbol(value, delay = 0) {
-      return token(value, "symbol", delay);
-    }
-
-    function calculateByEleven(value) {
-      const tens = Math.floor(value / 10);
-      const ones = value % 10;
-      const sum = tens + ones;
-      const carry = Math.floor(sum / 10);
-      const middle = sum % 10;
-      const hundreds = tens + carry;
-      const result = hundreds * 100 + middle * 10 + ones;
-
-      return { tens, ones, sum, carry, middle, hundreds, result };
-    }
-
-    function runAnimation(value) {
-      const math = calculateByEleven(value);
-      resetDisplay();
-
-      function showStep(index) {
-        steps[index].classList.remove("hide");
-        steps[index].classList.add("show");
+    const steps = [
+      {
+        title: "Triangle first",
+        chip: "Step 1",
+        heading: "Right-angled triangle OAB",
+        explain: "Angle theta is at point O. The right angle is at A. This triangle is the base for all six ratios.",
+        active: []
+      },
+      {
+        title: "Hypotenuse",
+        chip: "Step 2",
+        heading: "Hypotenuse is OB",
+        explain: "The hypotenuse is the longest side, opposite the right angle. Here it is OB.",
+        active: ["hyp"]
+      },
+      {
+        title: "Base",
+        chip: "Step 3",
+        heading: "Base is OA",
+        explain: "The base is the side beside angle theta. Here it is OA.",
+        active: ["base"]
+      },
+      {
+        title: "Perpendicular",
+        chip: "Step 4",
+        heading: "Perpendicular is AB",
+        explain: "The perpendicular is opposite angle theta. Here it is AB.",
+        active: ["perp"]
+      },
+      {
+        title: "Introduce sin",
+        chip: "Step 5",
+        heading: "Now learn sin θ",
+        explain: "sin theta uses the side opposite theta and the hypotenuse.",
+        active: ["perp", "hyp"]
+      },
+      {
+        title: "sin formula",
+        chip: "Formula",
+        heading: "sin θ",
+        formula: "sin θ = Perpendicular / Hypotenuse",
+        explain: "sin θ means opposite / hypotenuse. In this triangle: sin θ = AB / OB.",
+        active: ["perp", "hyp"],
+        color: "red"
+      },
+      {
+        title: "Introduce cos",
+        chip: "Next Ratio",
+        heading: "Now learn cos θ",
+        explain: "cos theta uses the base and the hypotenuse.",
+        active: ["base", "hyp"]
+      },
+      {
+        title: "cos formula",
+        chip: "Formula",
+        heading: "cos θ",
+        formula: "cos θ = Base / Hypotenuse",
+        explain: "cos θ means adjacent side / hypotenuse. In this triangle: cos θ = OA / OB.",
+        active: ["base", "hyp"],
+        color: "blue"
+      },
+      {
+        title: "Introduce tan",
+        chip: "Next Ratio",
+        heading: "Now learn tan θ",
+        explain: "tan theta directly compares height and distance: perpendicular over base.",
+        active: ["perp", "base"]
+      },
+      {
+        title: "tan formula",
+        chip: "Formula",
+        heading: "tan θ",
+        formula: "tan θ = Perpendicular / Base",
+        explain: "tan θ means opposite / adjacent. In this triangle: tan θ = AB / OA.",
+        active: ["perp", "base"],
+        color: "green"
+      },
+      {
+        title: "cosec formula",
+        chip: "Reciprocal",
+        heading: "cosec θ",
+        formula: "cosec θ = 1 / sin θ",
+        explain: "cosec is the reciprocal of sin. Since sin θ = AB / OB, cosec θ = OB / AB.",
+        active: ["perp", "hyp"],
+        color: "red"
+      },
+      {
+        title: "sec formula",
+        chip: "Reciprocal",
+        heading: "sec θ",
+        formula: "sec θ = 1 / cos θ",
+        explain: "sec is the reciprocal of cos. Since cos θ = OA / OB, sec θ = OB / OA.",
+        active: ["base", "hyp"],
+        color: "blue"
+      },
+      {
+        title: "cot formula",
+        chip: "Reciprocal",
+        heading: "cot θ",
+        formula: "cot θ = 1 / tan θ",
+        explain: "cot is the reciprocal of tan. Since tan θ = AB / OA, cot θ = OA / AB.",
+        active: ["perp", "base"],
+        color: "green"
+      },
+      {
+        title: "Memory recap",
+        chip: "Remember",
+        heading: "Main three ratios",
+        formula: "sin = P/H, cos = B/H, tan = P/B",
+        explain: "P = Perpendicular, B = Base, H = Hypotenuse. Flip them for cosec, sec, and cot.",
+        active: ["perp", "base", "hyp"]
+      },
+      {
+        title: "Quick quiz",
+        chip: "Quiz",
+        heading: "Find sin θ",
+        quiz: true,
+        explain: "In triangle OAB, which expression is sin θ?",
+        active: ["perp", "hyp"]
+      },
+      {
+        title: "Complete",
+        chip: "Done",
+        heading: "You learned this formula set",
+        formula: "sin, cos, tan, cosec, sec, cot",
+        explain: "You can now use these ratios in height and distance questions.",
+        active: ["perp", "base", "hyp"]
       }
+    ];
 
-      function hideStep(index) {
-        steps[index].classList.remove("show");
-        steps[index].classList.add("hide");
+    const stage = document.getElementById("stage");
+    const dots = document.getElementById("dots");
+    const count = document.getElementById("count");
+    const stepTitle = document.getElementById("stepTitle");
+    const stepHint = document.getElementById("stepHint");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const autoBtn = document.getElementById("autoBtn");
+    const practiceBtn = document.getElementById("practiceBtn");
+    const sides = {
+      hyp: document.getElementById("hypSide"),
+      base: document.getElementById("baseSide"),
+      perp: document.getElementById("perpSide")
+    };
 
-        timers.push(setTimeout(() => {
-          steps[index].classList.remove("hide");
-        }, 390));
-      }
+    let index = 0;
+    let exitTimer = null;
+    let autoTimer = null;
+    let autoPlaying = false;
 
-      timers.push(setTimeout(() => {
-        splitLine.innerHTML = [
-          digit(math.tens, "first", 80),
-          symbol("and", 210),
-          digit(math.ones, "last", 340)
-        ].join("");
-        showStep(0);
-      }, 120));
+    function stepHtml(step) {
+      const formula = step.formula ? `<div class="formula ${step.color || ""}">${step.formula}</div>` : "";
+      const quiz = step.quiz ? `
+        <div class="quiz">
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-answer="wrong">OA / OB</button>
+            <button class="quiz-option" type="button" data-answer="correct">AB / OB</button>
+            <button class="quiz-option" type="button" data-answer="wrong">AB / OA</button>
+          </div>
+          <div class="quiz-result" id="quizResult"></div>
+        </div>
+      ` : "";
 
-      timers.push(setTimeout(() => {
-        hideStep(0);
-      }, 1450));
-
-      timers.push(setTimeout(() => {
-        addLine.innerHTML = [
-          digit(math.tens, "first", 80),
-          symbol("+", 190),
-          digit(math.ones, "last", 300),
-          symbol("=", 410),
-          digit(math.sum, "middle", 520)
-        ].join("");
-
-        if (math.carry > 0) {
-          carryNote.textContent = `${math.sum} has a carry, so add ${math.carry} to the first digit.`;
-        }
-
-        showStep(1);
-      }, 1850));
-
-      timers.push(setTimeout(() => {
-        hideStep(1);
-      }, 3300));
-
-      timers.push(setTimeout(() => {
-        resultLine.innerHTML = [
-          digit(math.hundreds, "first", 80),
-          digit(math.middle, "middle", 260),
-          digit(math.ones, "last", 440)
-        ].join("");
-        showStep(2);
-      }, 3700));
-
-      timers.push(setTimeout(() => {
-        hideStep(2);
-      }, 5150));
-
-      timers.push(setTimeout(() => {
-        finalAnswer.textContent = math.result;
-        answerBox.classList.add("show");
-      }, 5550));
-
-      timers.push(setTimeout(() => {
-        tryAgain.classList.add("show");
-      }, 6150));
+      return `
+        <article class="step show">
+          <span class="step-chip">${step.chip}</span>
+          <h2>${step.heading}</h2>
+          ${formula}
+          <p class="explain">${step.explain}</p>
+          ${quiz}
+        </article>
+      `;
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const rawValue = input.value.trim();
-      const value = Number(rawValue);
+    function updateHighlights(activeSides) {
+      Object.entries(sides).forEach(([name, element]) => {
+        element.classList.toggle("active", activeSides.includes(name));
+      });
+    }
 
-      if (!/^\d{2}$/.test(rawValue) || value < 10 || value > 99) {
-        resetDisplay();
-        message.textContent = "Please enter exactly one 2-digit number.";
-        input.focus();
+    function renderDots() {
+      dots.innerHTML = steps.map((_, dotIndex) => `<span class="dot ${dotIndex === index ? "active" : ""}"></span>`).join("");
+    }
+
+    function render(animateExit = true) {
+      clearTimeout(exitTimer);
+      const step = steps[index];
+      const oldStep = stage.querySelector(".step");
+
+      count.textContent = `${index + 1} / ${steps.length}`;
+      stepTitle.textContent = step.title;
+      stepHint.textContent = step.formula ? "Formula appears with matching side highlights." : "Watch the triangle and side highlights.";
+      prevBtn.disabled = index === 0;
+      nextBtn.textContent = index === steps.length - 1 ? "Start Again ▶️" : "Next Step ▶️";
+      updateHighlights(step.active);
+      renderDots();
+
+      if (oldStep && animateExit) {
+        oldStep.classList.remove("show");
+        oldStep.classList.add("hide");
+        exitTimer = setTimeout(() => {
+          stage.innerHTML = stepHtml(step);
+        }, 340);
+      } else {
+        stage.innerHTML = stepHtml(step);
+      }
+    }
+
+    function stopAuto() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+      autoPlaying = false;
+      autoBtn.textContent = "Auto Play 🎬";
+    }
+
+    function next() {
+      index = index === steps.length - 1 ? 0 : index + 1;
+      render(true);
+    }
+
+    function previous() {
+      if (index > 0) {
+        index -= 1;
+        render(true);
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      stopAuto();
+      next();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      stopAuto();
+      previous();
+    });
+
+    autoBtn.addEventListener("click", () => {
+      if (autoPlaying) {
+        stopAuto();
         return;
       }
 
-      runAnimation(value);
+      autoPlaying = true;
+      autoBtn.textContent = "Pause ⏸️";
+      autoTimer = setInterval(next, 2700);
     });
 
-    tryAgain.addEventListener("click", () => {
-      resetDisplay();
-      input.value = "";
-      input.focus();
+    practiceBtn.addEventListener("click", () => {
+      stopAuto();
+      index = 14;
+      render(true);
     });
 
-    exampleChips.forEach((chip) => {
-      chip.addEventListener("click", () => {
-        input.value = chip.textContent;
-        runAnimation(Number(chip.textContent));
+    stage.addEventListener("click", (event) => {
+      const option = event.target.closest(".quiz-option");
+      if (!option) return;
+
+      const result = document.getElementById("quizResult");
+      stage.querySelectorAll(".quiz-option").forEach((button) => {
+        button.classList.remove("correct", "wrong");
       });
-    });
 
-    input.addEventListener("input", () => {
-      if (input.value.length > 2) {
-        input.value = input.value.slice(0, 2);
+      if (option.dataset.answer === "correct") {
+        option.classList.add("correct");
+        result.textContent = "Correct: sin θ = AB / OB.";
+      } else {
+        option.classList.add("wrong");
+        result.textContent = "Try again. sin θ uses Perpendicular / Hypotenuse.";
       }
     });
+
+    render(false);
   </script>
 </body>
 </html>
